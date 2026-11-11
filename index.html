@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Peça lanches artesanais inspirados nos sabores de Sabará na Do Ó Lanches.">
+  <title>Do Ó Lanches | Sabor de Sabará</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="topo">
+      <a class="marca" href="#inicio" aria-label="Do Ó Lanches - início">
+        <img src="logosemfundo.png" alt="Logo Do Ó Lanches">
+        <span>Do Ó Lanches</span>
+      </a>
+      <button id="menu-mobile" class="menu-mobile" type="button" aria-label="Abrir menu">☰</button>
+      <nav id="navegacao">
+        <a href="#inicio">Início</a>
+        <a href="#cardapio">Cardápio</a>
+        <a href="#desafio">Monte seu combo</a>
+        <a href="#carrinho-pagina">Carrinho <span id="contador-carrinho">0</span></a>
+        <a href="#pedidos">Meus pedidos</a>
+        <a href="#perfil">Meu perfil</a>
+        <button id="abrir-login" class="link-nav" type="button">Login</button>
+        <button id="abrir-cadastro" class="link-nav" type="button">Cadastro</button>
+        <button id="alternar-tema" class="link-nav tema-botao" type="button" aria-label="Alternar modo claro e escuro">🌙</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="capa" id="inicio">
+      <div class="texto-capa">
+        <p class="chamada">SABOR DE SABARÁ</p>
+        <h1>Do Ó Lanches</h1>
+        <p>Lanches caprichados, inspirados nos sabores de Minas e na história de Sabará.</p>
+        <a class="botao" href="#cardapio">Ver cardápio</a>
+      </div>
+      <div class="destaques">
+        <article><img src="ora-pro-burguer-hero.png" alt="Ora-pro-burguer"><h2>Ora-pro-burguer</h2><p>Uma combinação especial com ora-pro-nóbis.</p></article>
+        <article><img src="jabutiburguer-hero.png" alt="Jabutiburguer"><h2>Jabutiburguer</h2><p>Um hambúrguer com o sabor marcante da jabuticaba.</p></article>
+      </div>
+    </section>
+
+    <section class="desafio secao" id="desafio">
+      <p class="chamada desafio-chamada">EXPERIÊNCIA EXCLUSIVA</p>
+      <h2>Desafio do Ó: descubra seu combo</h2>
+      <p class="subtitulo">Responda três perguntinhas e receba uma combinação inspirada nos sabores de Sabará.</p>
+      <div class="desafio-conteudo">
+        <form id="form-desafio" class="desafio-form">
+          <label for="preferencia">Qual sabor combina com você?</label>
+          <select id="preferencia" required>
+            <option value="mineiro">Mineiro e diferente</option>
+            <option value="classico">Clássico e suculento</option>
+            <option value="agridoce">Agridoce e surpreendente</option>
+          </select>
+          <label for="fome">Qual é o tamanho da sua fome?</label>
+          <select id="fome" required>
+            <option value="media">Fome normal</option>
+            <option value="grande">Hoje eu tô com muita fome!</option>
+            <option value="leve">Quero algo mais leve</option>
+          </select>
+          <label for="bebida-desafio">Escolha sua bebida</label>
+          <select id="bebida-desafio" required>
+            <option value="jabusuco">Suco de jabuticaba</option>
+            <option value="morango">Suco de morango</option>
+            <option value="sprite">Sprite</option>
+          </select>
+          <button class="botao desafio-botao" type="submit">Revelar meu combo</button>
+        </form>
+        <div id="resultado-desafio" class="resultado-desafio" aria-live="polite">
+          <div class="selo-desafio">❦</div>
+          <h3>Seu sabor, sua história</h3>
+          <p>Monte seu combo personalizado e descubra uma combinação feita para o seu momento.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cardapio secao" id="cardapio">
+      <h2>Nosso cardápio</h2><p class="subtitulo">Escolha seus favoritos e adicione ao carrinho.</p>
+      <div class="filtros">
+        <input type="search" id="busca" placeholder="Buscar por nome ou ingrediente..." aria-label="Buscar produtos">
+        <button class="filtro ativo" data-categoria="Todos" type="button">Todos</button>
+        <button class="filtro" data-categoria="Hambúrgueres" type="button">Hambúrgueres</button>
+        <button class="filtro" data-categoria="Porções" type="button">Porções</button>
+        <button class="filtro" data-categoria="Bebidas" type="button">Bebidas</button>
+        <button class="filtro" data-categoria="Extras" type="button">Extras</button>
+      </div>
+      <p id="mensagem-api" class="mensagem-api" role="status"></p>
+      <div id="produtos" class="produtos"></div>
+    </section>
+
+    <section class="secao" id="carrinho-pagina">
+      <h2>Meu carrinho</h2><p class="subtitulo">Confira os itens antes de finalizar.</p>
+      <div class="painel">
+        <div id="carrinho"><p>Você ainda não adicionou produtos.</p></div>
+        <p class="total">Total: <strong id="total">R$ 0,00</strong></p>
+        <a class="botao" href="#finalizar">Continuar para entrega</a>
+      </div>
+    </section>
+
+    <section class="pedido secao" id="finalizar">
+      <h2>Finalizar pedido</h2>
+      <div class="pedido-colunas">
+        <div class="caixa"><h3>Entrega</h3><p>Preencha seus dados para montar o pedido.</p><p class="aviso">Confira os dados antes de enviar. O WhatsApp abrirá com a mensagem pronta.</p></div>
+        <form id="form-pedido" class="caixa">
+          <label for="nome-entrega">Nome completo</label><input id="nome-entrega" name="nome" type="text" required maxlength="80" autocomplete="name" placeholder="Seu nome">
+          <label for="telefone">Telefone com DDD</label><input id="telefone" name="telefone" type="tel" required inputmode="numeric" maxlength="15" autocomplete="tel" placeholder="(31) 99999-9999"><small>Digite 10 ou 11 números, incluindo o DDD.</small>
+          <h3 class="endereco-titulo">Endereço para entrega</h3>
+          <label for="rua">Rua ou avenida</label><input id="rua" name="rua" type="text" required maxlength="100" autocomplete="street-address">
+          <div class="linha"><div><label for="numero">Número</label><input id="numero" name="numero" type="text" required maxlength="10" inputmode="numeric" pattern="[0-9A-Za-z/-]{1,10}" title="Use números e, se necessário, letra ou barra."></div><div><label for="bairro">Bairro</label><input id="bairro" name="bairro" type="text" required maxlength="60"></div></div>
+          <label for="cidade">Cidade</label><input id="cidade" name="cidade" type="text" required maxlength="60">
+          <label for="observacao">Observações</label><textarea id="observacao" name="observacao" rows="3" maxlength="300" placeholder="Ponto de referência ou detalhe do pedido"></textarea>
+          <button class="botao enviar" type="submit">Salvar pedido e abrir WhatsApp</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="secao" id="pedidos"><h2>Meus pedidos</h2><p class="subtitulo">Veja os pedidos feitos neste navegador ou na sua conta.</p><div id="lista-pedidos" class="painel"><p>Entre na sua conta para consultar seus pedidos.</p></div></section>
+
+    <section class="secao" id="perfil"><h2>Meu perfil</h2><p class="subtitulo">Seus dados de cadastro.</p><div id="dados-perfil" class="painel"><p>Você ainda não entrou em uma conta.</p><button class="botao" id="perfil-login" type="button">Entrar ou cadastrar</button></div></section>
+  </main>
+
+  <div id="modal-conta" class="modal" aria-hidden="true">
+    <div class="modal-conteudo" role="dialog" aria-modal="true" aria-labelledby="titulo-modal">
+      <button class="fechar-modal" id="fechar-modal" type="button" aria-label="Fechar">×</button>
+      <div class="abas-conta"><button id="aba-login" class="aba ativa" type="button">Login</button><button id="aba-cadastro" class="aba" type="button">Cadastro</button></div>
+      <h2 id="titulo-modal">Entrar na conta</h2>
+      <form id="form-login">
+        <label for="login-email">E-mail</label><input id="login-email" type="email" maxlength="120" required autocomplete="email">
+        <label for="login-senha">Senha</label><input id="login-senha" type="password" minlength="6" maxlength="60" required autocomplete="current-password">
+        <button class="botao enviar" type="submit">Entrar</button>
+      </form>
+      <form id="form-cadastro" hidden>
+        <label for="cad-nome">Nome completo</label><input id="cad-nome" type="text" maxlength="80" required autocomplete="name">
+        <label for="cad-email">E-mail</label><input id="cad-email" type="email" maxlength="120" required autocomplete="email">
+        <label for="cad-telefone">Telefone</label><input id="cad-telefone" type="tel" maxlength="15" inputmode="numeric" required placeholder="(31) 99999-9999" autocomplete="tel">
+        <label for="cad-senha">Senha (mínimo 6 caracteres)</label><input id="cad-senha" type="password" minlength="6" maxlength="60" required autocomplete="new-password">
+        <button class="botao enviar" type="submit">Criar cadastro</button>
+      </form>
+      <p id="mensagem-conta" role="status"></p>
+    </div>
+  </div>
+
+  <footer><p>Do Ó Lanches · Um sabor de Sabará.</p><p></p></footer>
+  <script src="script.js"></script>
+</body>
+</html>
